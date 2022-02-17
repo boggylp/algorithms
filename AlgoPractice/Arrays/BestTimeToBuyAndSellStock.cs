@@ -43,8 +43,10 @@ namespace AlgoPractice.Arrays
             if (prices == null || prices.Length == 0)
                 return maxProfit;
 
-            int buyPrice = Int32.MaxValue;
-            int sellPrice = Int32.MinValue;
+            int buyPrice = int.MaxValue;
+            int sellPrice = int.MinValue;
+            bool sell = false;
+
             for (int i = 0; i < prices.Length; i++)
             {
                 int next = i + 1;
@@ -65,8 +67,19 @@ namespace AlgoPractice.Arrays
                 {
                     sellPrice = prices[i];
                 }
+                else
+                {
+                    sell = true;
+                }
 
-                maxProfit += sellPrice;
+                // sell
+                if (buyPrice != int.MaxValue && sellPrice != int.MinValue && sell)
+                {
+                    maxProfit += buyPrice - sellPrice;
+                    sellPrice = int.MinValue;
+                    buyPrice = int.MaxValue;
+                    sell = false;
+                }
             }
 
             return maxProfit;
