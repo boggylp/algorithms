@@ -30,6 +30,10 @@ namespace AlgoPractice.Arrays
         /// Input: prices = [7,6,4,3,1]
         /// Output: 0
         /// Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
+        /// 
+        /// Constraints:
+        /// 1 <= prices.length <= 3 * 104
+        /// 0 <= prices[i] <= 104
         /// </summary>
         /// <param name="prices">prices</param>
         /// <returns>max profit</returns>
@@ -39,23 +43,33 @@ namespace AlgoPractice.Arrays
             if (prices == null || prices.Length == 0)
                 return maxProfit;
 
-            int buyingPoint = -1;
-            int sellingPoint = -1;
+            int buyPrice = Int32.MaxValue;
+            int sellPrice = Int32.MinValue;
             for (int i = 0; i < prices.Length; i++)
             {
-                if (prices[i] < prices[i + 1])
+                int next = i + 1;
+                if (next >= prices.Length)
                 {
-                    if (prices[i] < prices[buyingPoint])
+                    if (buyPrice < sellPrice)
                     {
-
+                        maxProfit += prices[i];
                     }
+                    break;
                 }
-                else if (prices[i] > prices[i + 1])
-                {
 
+                if (prices[next] > prices[i] && prices[i] < buyPrice)
+                {
+                    buyPrice = prices[i];
                 }
+                if (prices[next] < prices[i] && prices[i] > sellPrice && prices[i] <= maxProfit)
+                {
+                    sellPrice = prices[i];
+                }
+
+                maxProfit += sellPrice;
             }
-            return 0;
+
+            return maxProfit;
         }
     }
 }
