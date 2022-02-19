@@ -27,6 +27,7 @@ namespace AlgoPractice.Arrays
         /// Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
         /// Total profit is 4.
         /// 
+        /// Examples 3:
         /// Input: prices = [7,6,4,3,1]
         /// Output: 0
         /// Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
@@ -43,46 +44,30 @@ namespace AlgoPractice.Arrays
             if (prices == null || prices.Length == 0)
                 return maxProfit;
 
-            int buyPrice = int.MaxValue;
-            int sellPrice = int.MinValue;
-            bool sell = false;
-
+            int[] maxProfits = new int[prices.Length];
             for (int i = 0; i < prices.Length; i++)
             {
-                int next = i + 1;
-                if (next >= prices.Length)
-                {
-                    if (buyPrice < sellPrice)
-                    {
-                        maxProfit += prices[i];
-                    }
-                    break;
-                }
-
-                if (prices[next] > prices[i] && prices[i] < buyPrice)
-                {
-                    buyPrice = prices[i];
-                }
-                if (prices[next] < prices[i] && prices[i] > sellPrice && prices[i] <= maxProfit)
-                {
-                    sellPrice = prices[i];
-                }
-                else
-                {
-                    sell = true;
-                }
-
-                // sell
-                if (buyPrice != int.MaxValue && sellPrice != int.MinValue && sell)
-                {
-                    maxProfit += buyPrice - sellPrice;
-                    sellPrice = int.MinValue;
-                    buyPrice = int.MaxValue;
-                    sell = false;
-                }
+                maxProfits[i] = GetMaxProfit(prices.Take(i + 1).ToArray());
             }
 
-            return maxProfit;
+            return maxProfits.Max();
+
+            int GetMaxProfit(int[] subprices)
+            {
+                if (subprices.Length <= 1)
+                    return 0;
+
+                int newProfit = subprices[^1] - subprices[^2];
+                int profit = maxProfits[subprices.Length - 2];
+
+                if (newProfit > 0)
+                {
+                    profit += newProfit;
+                }
+
+                return profit;
+            }
         }
+
     }
 }
