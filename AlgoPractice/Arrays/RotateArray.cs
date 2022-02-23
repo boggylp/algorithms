@@ -33,17 +33,50 @@ namespace AlgoPractice.Arrays
         /// 0 <= k <= 10^5
         /// </summary>
         /// <param name="nums"></param>
-        /// <returns></returns>
+        /// <param name="k"></param>
         public static void Rotate(int[] nums, int k)
+        {
+            if (nums.Length <= 1 || k < 0)
+                return;
+
+            int?[] cache = new int?[nums.Length];
+            for (int i = 0; i < k && i < nums.Length; i++)
+            {
+                for (int j = i; j < nums.Length; j += k)
+                {
+                    int nextIndex = j + k;
+                    while (nextIndex >= nums.Length)
+                    {
+                        nextIndex -= nums.Length;
+                    }
+
+                    if (!cache[nextIndex].HasValue)
+                    {
+                        cache[nextIndex] = nums[nextIndex];
+                    }
+
+                    if (cache[j].HasValue)
+                    {
+                        nums[nextIndex] = cache[j].Value;
+                    }
+                    else
+                    {
+                        nums[nextIndex] = nums[j];
+                    }
+                }
+            }
+        }
+
+        public static void RotateGreedy(int[] nums, int k)
         {
             if (nums.Length <= 1)
                 return;
 
             var shiftedArray = new int[nums.Length];
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 int newIndex = i + k;
-                while(newIndex >= nums.Length)
+                while (newIndex >= nums.Length)
                 {
                     newIndex -= nums.Length;
                 }
@@ -51,7 +84,7 @@ namespace AlgoPractice.Arrays
                 shiftedArray[newIndex] = nums[i];
             }
 
-            for(int i = 0; i < shiftedArray.Length; i++)
+            for (int i = 0; i < shiftedArray.Length; i++)
             {
                 nums[i] = shiftedArray[i];
             }
