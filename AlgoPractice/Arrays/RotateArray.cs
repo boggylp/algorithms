@@ -39,30 +39,29 @@ namespace AlgoPractice.Arrays
             if (nums.Length <= 1 || k < 0)
                 return;
 
-            int?[] cache = new int?[nums.Length];
+            int processedNums = 0;
             for (int i = 0; i < k && i < nums.Length; i++)
             {
-                for (int j = i; j < nums.Length; j += k)
+                if (processedNums >= nums.Length)
+                    break;
+
+                int startIndex = i;
+                int currentIndex = startIndex;
+                int currentValue = nums[currentIndex];
+                while (true)
                 {
-                    int nextIndex = j + k;
+                    int nextIndex = currentIndex + k;
                     while (nextIndex >= nums.Length)
                     {
                         nextIndex -= nums.Length;
                     }
 
-                    if (!cache[nextIndex].HasValue)
-                    {
-                        cache[nextIndex] = nums[nextIndex];
-                    }
+                    (currentValue, nums[nextIndex]) = (nums[nextIndex], currentValue);
+                    currentIndex = nextIndex;
 
-                    if (cache[j].HasValue)
-                    {
-                        nums[nextIndex] = cache[j].Value;
-                    }
-                    else
-                    {
-                        nums[nextIndex] = nums[j];
-                    }
+                    processedNums++;
+                    if (currentIndex == startIndex)
+                        break;
                 }
             }
         }
