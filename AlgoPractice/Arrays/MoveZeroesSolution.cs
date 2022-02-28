@@ -15,6 +15,7 @@ namespace AlgoPractice.Arrays
         /// 
         /// Example 1:
         /// Input: nums = [0,1,0,3,12]
+        /// Input: nums = [1,0,4,3,12]
         /// Output: [1,3,12,0,0]
         /// 
         /// Example 2:
@@ -28,21 +29,17 @@ namespace AlgoPractice.Arrays
                 return;
 
             int zeroIndex = -1;
-            for (int i = nums.Length - 1; i >= 0; i--)
+            for (int i = 0; i < nums.Length; i++)
             {
-                if (nums[i] != 0 && i > zeroIndex)
+                if (nums[i] == 0 && zeroIndex < 0 || (zeroIndex >= 0 && nums[zeroIndex] != 0))
                 {
                     zeroIndex = i;
                 }
-                else if (nums[i] == 0)
+                else if (zeroIndex < i && zeroIndex >= 0 && nums[i] != 0)
                 {
-                    nums[i] = nums[zeroIndex];
-                    nums[zeroIndex] = 0;
-                    zeroIndex--;
-                }
-                else
-                {
-
+                    nums[zeroIndex] = nums[i];
+                    nums[i] = 0;
+                    zeroIndex++;
                 }
             }
         }
