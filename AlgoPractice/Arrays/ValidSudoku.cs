@@ -18,7 +18,7 @@ public class ValidSudoku
     /// </summary>
     /// <param name="board"></param>
     /// <returns></returns>
-    public bool IsValidSudoku(char[][] board)
+    public static bool IsValidSudoku(char[][] board)
     {
         if (board == null || board.Length != 9)
             return false;
@@ -27,8 +27,8 @@ public class ValidSudoku
         var boxes = new HashSet<char>[board.Length];
         for (int i = 0; i < columns.Length; i++)
         {
-            columns[i] = new HashSet<char>();
-            boxes[i] = new HashSet<char>();
+            columns[i] = [];
+            boxes[i] = [];
         }
 
         for (int i = 0; i < board.Length; i++)

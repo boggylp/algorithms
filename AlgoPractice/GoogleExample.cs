@@ -11,7 +11,7 @@ public class GoogleExample
     public static int[] FindSumOfPairs(int[] nums, int sum)
     {
         if (nums == null || nums.Length == 0)
-            return null;
+            return [];
 
         int i = 0;
         int j = nums.Length - 1;
@@ -28,10 +28,10 @@ public class GoogleExample
             }
             if (currentSum == sum)
             {
-                return new int[] { nums[i], nums[j] };
+                return [nums[i], nums[j]];
             }
         }
 
-        return null;
+        return [];
     }
 }
