@@ -22,7 +22,7 @@ public class ArrayIntersection
     public static int[] Intersect(int[] nums1, int[] nums2)
     {
         if (nums1.Length == 0 || nums2.Length == 0)
-            return null;
+            return [];
 
         var solution = new List<int>();
 
@@ -40,6 +40,6 @@ public class ArrayIntersection
                 }
             });
 
-        return solution.ToArray();
+        return [.. solution];
     }
 }

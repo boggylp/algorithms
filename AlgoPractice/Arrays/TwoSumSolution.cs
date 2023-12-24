@@ -31,9 +31,9 @@ public class TwoSumSolution
         for (int i = 0; i < nums.Length; i++)
         {
             int missingNum = target - nums[i];
-            if (values.ContainsKey(missingNum))
+            if (values.TryGetValue(missingNum, out int value))
             {
-                return [values[missingNum], i];
+                return [value, i];
             }
             else
             {
@@ -41,6 +41,6 @@ public class TwoSumSolution
             }
         }
 
-        return null;
+        return [];
     }
 }

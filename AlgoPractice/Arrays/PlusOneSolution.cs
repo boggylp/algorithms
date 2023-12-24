@@ -41,6 +41,6 @@ public class PlusOneSolution
         }
 
         result.Reverse();
-        return result.ToArray();
+        return [.. result];
     }
 }
