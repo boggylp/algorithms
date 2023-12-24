@@ -1,5 +1,5 @@
-using Xunit;
 using AlgoPractice;
+using Xunit;
 
 namespace AlgoPracticeTest;
 
@@ -13,7 +13,7 @@ public class GoogleExampleTest
     public void TestPlusOne(int[] nums, int sum, int[] expectedResult)
     {
         var sln = new GoogleExample();
-        var result = sln.FindSumOfPairs(nums, sum);
+        var result = GoogleExample.FindSumOfPairs(nums, sum);
         Assert.Equal(expectedResult, result);
     }
 }

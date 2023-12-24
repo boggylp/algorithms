@@ -1,5 +1,5 @@
-using Xunit;
 using AlgoPractice.Arrays;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -14,7 +14,7 @@ public class PlusOneTest
     public void TestPlusOne(int[] nums, int[] expectedResult)
     {
         var sln = new PlusOneSolution();
-        var result = sln.PlusOne(nums);
+        var result = PlusOneSolution.PlusOne(nums);
         Assert.Equal(expectedResult, result);
     }
 }

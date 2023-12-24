@@ -1,5 +1,5 @@
-using Xunit;
 using AlgoPractice.Arrays;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -13,7 +13,7 @@ public class SingleNumberTest
     public void TestSingleNumner(int[] nums, int expectedResult)
     {
         var algo = new SingleNumberSolution();
-        var result = algo.SingleNumber(nums);
+        var result = SingleNumberSolution.SingleNumber(nums);
         Assert.Equal(expectedResult, result);
     }
 }

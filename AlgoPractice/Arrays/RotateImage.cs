@@ -16,7 +16,7 @@ public class RotateImage
     /// Output: [[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
     /// </summary>
     /// <param name="matrix"></param>
-    public void Rotate(int[][] matrix)
+    public static void Rotate(int[][] matrix)
     {
         if (matrix == null || matrix.Length == 0)
             return;

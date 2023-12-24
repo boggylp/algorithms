@@ -1,5 +1,5 @@
-using Xunit;
 using AlgoPractice.Arrays;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -12,7 +12,7 @@ public class ContainsDuplicateTest
     public void TestContainsDuplicate(int[] nums, bool expectedResult)
     {
         var algo = new ContainsDuplicateSolution();
-        var result = algo.ContainsDuplicate(nums);
+        var result = ContainsDuplicateSolution.ContainsDuplicate(nums);
         Assert.Equal(expectedResult, result);
     }
 }

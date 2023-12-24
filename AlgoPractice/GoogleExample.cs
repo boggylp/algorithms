@@ -8,7 +8,7 @@ public class GoogleExample
     /// <param name="nums"></param>
     /// <param name="sum"></param>
     /// <returns></returns>
-    public int[] FindSumOfPairs(int[] nums, int sum)
+    public static int[] FindSumOfPairs(int[] nums, int sum)
     {
         if (nums == null || nums.Length == 0)
             return null;

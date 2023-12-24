@@ -20,7 +20,7 @@ public class SingleNumberSolution
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-    public int SingleNumber(int[] nums)
+    public static int SingleNumber(int[] nums)
     {
         if (nums == null || nums.Length <= 0)
             return 0;
