@@ -1,6 +1,5 @@
-using Xunit;
 using AlgoPractice.Arrays;
-using System;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -13,7 +12,7 @@ public class TwoSumTest
     public void TestTwoSum(int[] nums, int target, int[] expectedResult)
     {
         var algo = new TwoSumSolution();
-        var result = algo.TwoSum(nums, target);
+        var result = TwoSumSolution.TwoSum(nums, target);
         Assert.Equal(expectedResult, result);
     }
 }

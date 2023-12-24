@@ -1,6 +1,5 @@
-using Xunit;
 using AlgoPractice.Arrays;
-using System;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -14,7 +13,7 @@ public class MoveZeroesTest
     public void TestMoveZeroes(int[] nums, int[] expectedResult)
     {
         var sln = new MoveZeroesSolution();
-        sln.MoveZeroes(nums);
+        MoveZeroesSolution.MoveZeroes(nums);
         Assert.Equal(expectedResult, nums);
     }
 }

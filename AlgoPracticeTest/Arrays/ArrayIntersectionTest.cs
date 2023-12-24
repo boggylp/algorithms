@@ -1,7 +1,7 @@
-using Xunit;
-using AlgoPractice.Arrays;
 using System;
 using System.Linq;
+using AlgoPractice.Arrays;
+using Xunit;
 
 namespace AlgoPracticeTest.Arrays;
 
@@ -13,7 +13,7 @@ public class ArrayIntersectionTest
     public void TestIntersect(int[] nums1, int[] nums2, int[] expectedResult)
     {
         var algo = new ArrayIntersection();
-        var result = algo.Intersect(nums1, nums2);
+        var result = ArrayIntersection.Intersect(nums1, nums2);
         Assert.True(expectedResult.All(er => result.Contains(er)));
         Assert.Equal(expectedResult.Length, result.Length);
     }

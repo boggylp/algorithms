@@ -1,6 +1,5 @@
 using Xunit;
 using AlgoPractice.Arrays;
-using System;
 
 namespace AlgoPracticeTest.Arrays;
 
