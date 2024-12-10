@@ -15,11 +15,11 @@
 /// Input: nums = [1,1,1,3,3,4,3,2,4,2]
 /// Output: true
 /// </summary>
-public class ContainsDuplicateSolution
+public sealed class ContainsDuplicateSolution
 {
-    public static bool ContainsDuplicate(int[] nums)
+    public static bool ContainsDuplicate(int[]? nums)
     {
-        if (nums == null || nums.Length <= 0)
+        if (nums is not { Length: > 0 })
             return false;
 
         return nums.Distinct().Count() != nums.Length;
