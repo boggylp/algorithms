@@ -1,9 +1,9 @@
 ﻿using AlgoPractice.Strings;
 using Xunit;
 
-namespace AlgoPracticeTest;
+namespace AlgoPracticeTest.Strings;
 
-public class RerverseIntTest
+public sealed class ReverseIntTest
 {
     [Theory]
     [InlineData(123, 321)]
