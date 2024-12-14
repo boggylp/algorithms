@@ -33,6 +33,7 @@ public static class GridTravel
             return result;
 
         results[point] = UniquePaths(m - 1, n, results) + UniquePaths(m, n - 1, results);
+        results[new Point(n, m)] = results[point]; // (m, n) = (n, m)
 
         return results[point];
     }
