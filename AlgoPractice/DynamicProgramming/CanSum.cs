@@ -8,29 +8,24 @@ public static class CanSum
 {
     public static bool Run(int targetSum, int[] numbers)
     {
-        return Run(targetSum, numbers, new Dictionary<int, bool>());
-    }
+        var result = new bool[targetSum + 1];
+        result[0] = true;
 
-    private static bool Run(int targetSum, int[] numbers, Dictionary<int, bool> memo)
-    {
-        if (memo.TryGetValue(targetSum, out var result))
-            return result;
-        if (targetSum == 0)
-            return true;
-        if (targetSum < 0)
-            return false;
-
-        foreach (var number in numbers)
+        for (int i = 0; i < result.Length; i++)
         {
-            var remainder = targetSum - number;
-            if (Run(remainder, numbers, memo))
+            if (!result[i])
+                continue;
+
+            foreach (var number in numbers)
             {
-                memo[targetSum] = true;
-                return true;
+                var targetIndex = i + number;
+                if (targetIndex < result.Length)
+                {
+                    result[targetIndex] = true;
+                }
             }
         }
 
-        memo[targetSum] = false;
-        return false;
+        return result[targetSum];
     }
 }
