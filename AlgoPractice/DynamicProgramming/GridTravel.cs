@@ -13,14 +13,7 @@
 // Output: 3
 public static class GridTravel
 {
-    private record struct Point(int X, int Y);
-
     public static int UniquePaths(int m, int n)
-    {
-        return UniquePaths(m, n, new Dictionary<Point, int>());
-    }
-
-    private static int UniquePaths(int m, int n, Dictionary<Point, int> results)
     {
         if (m <= 0 || n <= 0)
             return 0;
@@ -28,13 +21,30 @@ public static class GridTravel
         if (m == 1 || n == 1)
             return 1;
 
-        var point = new Point(m, n);
-        if (results.TryGetValue(point, out var result))
-            return result;
+        var memo = new int[m, n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == 0 || j == 0)
+                {
+                    memo[i, j] = 1;
+                }
 
-        results[point] = UniquePaths(m - 1, n, results) + UniquePaths(m, n - 1, results);
-        results[new Point(n, m)] = results[point]; // (m, n) = (n, m)
+                var current = memo[i, j];
 
-        return results[point];
+                if (j + 1 < n)
+                {
+                    memo[i, j + 1] += current;
+                }
+
+                if (i + 1 < m)
+                {
+                    memo[i + 1, j] += current;
+                }
+            }
+        }
+
+        return memo[m - 1, n - 1];
     }
 }
