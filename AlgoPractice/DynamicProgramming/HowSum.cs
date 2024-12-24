@@ -8,30 +8,23 @@ public static class HowSum
 {
     public static int[]? Run(int targetSum, int[] numbers)
     {
-        return Run(targetSum, numbers, new Dictionary<int, List<int>?>())?.ToArray();
-    }
+        var result = new int[targetSum + 1][];
+        result[0] = [];
 
-    private static List<int>? Run(int targetSum, int[] numbers, Dictionary<int, List<int>?> memo)
-    {
-        if (memo.TryGetValue(targetSum, out var result))
-            return result;
-        if (targetSum == 0)
-            return [];
-        if (targetSum < 0)
-            return null;
-
-        foreach (var number in numbers)
+        for (int i = 0; i <= targetSum; i++)
         {
-            var remainder = targetSum - number;
-            var remainderResult = Run(remainder, numbers, memo);
-            if (remainderResult != null)
+            if (result[i] == null)
+                continue;
+            foreach (var number in numbers)
             {
-                memo[targetSum] = remainderResult.Append(number).ToList();
-                return memo[targetSum];
+                var targetIndex = i + number;
+                if (targetIndex <= targetSum)
+                {
+                    result[targetIndex] = result[i].Append(number).ToArray();
+                }
             }
         }
 
-        memo[targetSum] = null;
-        return null;
+        return result[targetSum];
     }
 }
