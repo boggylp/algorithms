@@ -13,7 +13,7 @@ public static class HowSum
 
         for (int i = 0; i <= targetSum; i++)
         {
-            if (result[i] == null)
+            if (result[i] is null)
                 continue;
             foreach (var number in numbers)
             {
