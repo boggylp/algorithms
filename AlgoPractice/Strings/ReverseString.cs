@@ -1,6 +1,6 @@
 ﻿namespace AlgoPractice.Strings;
 
-public class ReverseString
+public static class ReverseString
 {
     public static void Run(char[] characters)
     {
