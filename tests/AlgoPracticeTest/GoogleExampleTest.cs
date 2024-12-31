@@ -1,5 +1,4 @@
 using AlgoPractice;
-using Xunit;
 
 namespace AlgoPracticeTest;
 
@@ -12,7 +11,6 @@ public class GoogleExampleTest
     [InlineData(new int[] { 1, 2, 4, 7 }, 9, new int[] { 2, 7 })]
     public void TestPlusOne(int[] nums, int sum, int[] expectedResult)
     {
-        var sln = new GoogleExample();
         var result = GoogleExample.FindSumOfPairs(nums, sum);
         Assert.Equal(expectedResult, result);
     }

@@ -1,6 +1,4 @@
 ﻿using AlgoPractice.DynamicProgramming;
-using System;
-using System.Collections.Generic;
 
 namespace AlgoPracticeTest.DynamicProgramming;
 
@@ -14,17 +12,10 @@ public sealed class AllConstructTest
         Assert.Equivalent(expectedResult, result);
     }
 
-    public static IEnumerable<object[]> GetTestData()
+    public static TheoryData<string, string[], string[][]> GetTestData() => new()
     {
-        yield return
-        [
-            "abcdef",
-            new[] { "ab", "abc", "cd", "def", "abcd", "ef", "c" },
-            new[] { new[] { "ab", "cd", "ef" }, new[] { "abcd", "ef" } }
-        ];
-
-        yield return ["", new[] { "cat", "dog" }, new[] { Array.Empty<string>() }];
-
-        yield return ["birds", new[] { "cat", "dog" }, Array.Empty<string>()];
-    }
+        { "abcdef", ["ab", "abc", "cd", "def", "abcd", "ef", "c"], [["ab", "cd", "ef"], ["abcd", "ef"]] },
+        { "", ["cat", "dog"], [[]] },
+        { "birds", ["cat", "dog"], [] }
+    };
 }
