@@ -28,7 +28,7 @@ public static class LinkedListFactory
     {
         if (head == null)
         {
-            return Array.Empty<int>();
+            return [];
         }
 
         var result = new List<int>();
