@@ -5,19 +5,31 @@ namespace AlgoPractice.LinkedList;
 /// The list should be made by splicing together the nodes of the first two lists.
 /// Return the head of the merged linked list.
 /// </summary>
-class MergeTwoSortedLists
+public class MergeTwoSortedLists
 {
     public static ListNode? MergeTwoLists(ListNode? list1, ListNode? list2)
     {
-        if (list1 == null) return list2;
-        if (list2 == null) return list1;
+        if (list1 == null)
+            return list2;
+        if (list2 == null)
+            return list1;
 
-        ListNode head = list1.val < list2.val ? list1 : list2;
+        ListNode? head;
         var currentLeft = list1;
         var currentRight = list2;
+        if (list1.val < list2.val)
+        {
+            head = new ListNode(list1.val);
+            currentLeft = currentLeft.next;
+        }
+        else
+        {
+            head = new ListNode(list2.val);
+            currentRight = currentRight.next;
+        }
         var current = head;
 
-        while (true)
+        while (current != null)
         {
             if (currentLeft == null && currentRight == null)
             {
