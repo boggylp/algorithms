@@ -52,7 +52,7 @@ public class MergeTwoSortedLists
                 continue;
             }
 
-            if (currentLeft.val < currentRight.val)
+            if (currentLeft?.val < currentRight?.val)
             {
                 current.next = currentLeft;
                 current = current.next;
@@ -63,7 +63,7 @@ public class MergeTwoSortedLists
             {
                 current.next = currentRight;
                 current = current.next;
-                currentRight = currentRight.next;
+                currentRight = currentRight?.next;
                 continue;
             }
         }
