@@ -16,7 +16,7 @@ public static class RemoveNodeFromList
             // head
             if (previous is null && current is not null)
             {
-                current.val = current.next.val;
+                current.val = current.next!.val;
                 current.next = current.next.next;
             }
         }
