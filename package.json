@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint",
+    "fmt": "oxfmt"
+  },
+  "devDependencies": {
+    "oxfmt": "0.79.0",
+    "oxlint": "1.94.0"
+  }
+}
