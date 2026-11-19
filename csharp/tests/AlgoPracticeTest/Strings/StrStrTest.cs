@@ -4,12 +4,12 @@ namespace AlgoPracticeTest.Strings;
 
 public class StrStrTest
 {
-    [Theory]
-    [InlineData("sadbutsad", "sad", 0)]
-    [InlineData("leetcode", "leeto", -1)]
-    public void ValidHappyFlow(string haystack, string needle, int expectedResult)
+    [Test]
+    [Arguments("sadbutsad", "sad", 0)]
+    [Arguments("leetcode", "leeto", -1)]
+    public async Task ValidHappyFlow(string haystack, string needle, int expectedResult)
     {
         var result = StrStr.Run(haystack, needle);
-        Assert.Equivalent(expectedResult, result);
+        await Assert.That(result).IsEqualTo(expectedResult);
     }
 }

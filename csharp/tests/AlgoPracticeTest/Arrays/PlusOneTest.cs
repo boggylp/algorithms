@@ -1,19 +1,19 @@
 using AlgoPractice.Arrays;
-using Xunit;
+using TUnit.Assertions.Enums;
 
 namespace AlgoPracticeTest.Arrays;
 
 public class PlusOneTest
 {
-    [Theory]
-    [InlineData(new int[] { 1, 2, 3 }, new int[] { 1, 2, 4 })]
-    [InlineData(new int[] { 4, 3, 2, 1 }, new int[] { 4, 3, 2, 2 })]
-    [InlineData(new int[] { 9 }, new int[] { 1, 0 })]
-    [InlineData(new int[] { 3, 9, 9 }, new int[] { 4, 0, 0 })]
-    [InlineData(new int[] { 2, 3, 9, 9 }, new int[] { 2, 4, 0, 0 })]
-    public void TestPlusOne(int[] nums, int[] expectedResult)
+    [Test]
+    [Arguments(new[] { 1, 2, 3 }, new[] { 1, 2, 4 })]
+    [Arguments(new[] { 4, 3, 2, 1 }, new[] { 4, 3, 2, 2 })]
+    [Arguments(new[] { 9 }, new[] { 1, 0 })]
+    [Arguments(new[] { 3, 9, 9 }, new[] { 4, 0, 0 })]
+    [Arguments(new[] { 2, 3, 9, 9 }, new[] { 2, 4, 0, 0 })]
+    public async Task TestPlusOne(int[] nums, int[] expectedResult)
     {
         var result = PlusOneSolution.PlusOne(nums);
-        Assert.Equal(expectedResult, result);
+        await Assert.That(result).IsEquivalentTo(expectedResult, CollectionOrdering.Matching);
     }
 }

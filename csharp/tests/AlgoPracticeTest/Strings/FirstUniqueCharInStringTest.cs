@@ -4,16 +4,16 @@ namespace AlgoPracticeTest.Strings;
 
 public sealed class FirstUniqueCharInStringTest
 {
-    [Theory]
-    [InlineData("leetcode", 0)]
-    [InlineData("loveleetcode", 2)]
-    [InlineData("aabb", -1)]
-    [InlineData("z", 0)]
-    [InlineData("dddccdbba", 8)]
-    [InlineData("cdabcaabb", 1)]
-    public void ValidHappyFlow(string input, int expectedResult)
+    [Test]
+    [Arguments("leetcode", 0)]
+    [Arguments("loveleetcode", 2)]
+    [Arguments("aabb", -1)]
+    [Arguments("z", 0)]
+    [Arguments("dddccdbba", 8)]
+    [Arguments("cdabcaabb", 1)]
+    public async Task ValidHappyFlow(string input, int expectedResult)
     {
         var result = FirstUniqueCharInString.Run(input);
-        Assert.Equal(expectedResult, result);
+        await Assert.That(result).IsEqualTo(expectedResult);
     }
 }

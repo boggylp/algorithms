@@ -4,13 +4,13 @@ namespace AlgoPracticeTest.Strings;
 
 public class LongestCommonPrefixTest
 {
-    [Theory]
-    [InlineData(new[] { "a" }, "a")]
-    [InlineData(new[] { "ab", "a" }, "a")]
-    [InlineData(new[] { "flower", "flower", "flower", "flower" }, "flower")]
-    public void ValidHappyFlow(string[] input, string expectedResult)
+    [Test]
+    [Arguments(new[] { "a" }, "a")]
+    [Arguments(new[] { "ab", "a" }, "a")]
+    [Arguments(new[] { "flower", "flower", "flower", "flower" }, "flower")]
+    public async Task ValidHappyFlow(string[] input, string expectedResult)
     {
         var result = LongestCommonPrefix.Run(input);
-        Assert.Equal(expectedResult, result);
+        await Assert.That(result).IsEqualTo(expectedResult);
     }
 }

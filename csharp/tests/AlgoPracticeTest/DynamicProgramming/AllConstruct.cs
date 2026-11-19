@@ -1,21 +1,38 @@
-﻿using AlgoPractice.DynamicProgramming;
+using AlgoPractice.DynamicProgramming;
 
 namespace AlgoPracticeTest.DynamicProgramming;
 
 public sealed class AllConstructTest
 {
-    [Theory]
-    [MemberData(nameof(GetTestData))]
-    public void ValidHappyFlow(string target, string[] words, string[][] expectedResult)
+    [Test]
+    [MethodDataSource(nameof(GetTestData))]
+    public async Task ValidHappyFlow(string target, string[] words, string[][] expectedResult)
     {
         var result = AllConstruct.Run(target, words);
-        Assert.Equivalent(expectedResult, result);
+        await Assert.That(result).IsEquivalentTo(expectedResult);
     }
 
-    public static TheoryData<string, string[], string[][]> GetTestData() => new()
+    public static IEnumerable<Func<(string, string[], string[][])>> GetTestData()
     {
-        { "abcdef", ["ab", "abc", "cd", "def", "abcd", "ef", "c"], [["ab", "cd", "ef"], ["abcd", "ef"]] },
-        { "", ["cat", "dog"], [[]] },
-        { "birds", ["cat", "dog"], [] }
-    };
+        yield return () =>
+            (
+                "abcdef",
+                ["ab", "abc", "cd", "def", "abcd", "ef", "c"],
+                [
+                    ["ab", "cd", "ef"],
+                    ["ab", "c", "def"],
+                    ["abc", "def"],
+                    ["abcd", "ef"],
+                ]
+            );
+        yield return () =>
+            (
+                "",
+                ["cat", "dog"],
+                [
+                    [],
+                ]
+            );
+        yield return () => ("birds", ["cat", "dog"], []);
+    }
 }

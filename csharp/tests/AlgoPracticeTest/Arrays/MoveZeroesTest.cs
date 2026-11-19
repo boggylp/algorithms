@@ -1,18 +1,18 @@
 using AlgoPractice.Arrays;
-using Xunit;
+using TUnit.Assertions.Enums;
 
 namespace AlgoPracticeTest.Arrays;
 
 public class MoveZeroesTest
 {
-    [Theory]
-    [InlineData(new int[] { 0, 1, 0, 3, 12 }, new int[] { 1, 3, 12, 0, 0 })]
-    [InlineData(new int[] { 0 }, new int[] { 0 })]
-    [InlineData(new int[] { 0, 0, 3, 0, 0, 10, 0, 4 }, new int[] { 3, 10, 4, 0, 0, 0, 0, 0 })]
-    [InlineData(new int[] { 1 }, new int[] { 1 })]
-    public void TestMoveZeroes(int[] nums, int[] expectedResult)
+    [Test]
+    [Arguments(new[] { 0, 1, 0, 3, 12 }, new[] { 1, 3, 12, 0, 0 })]
+    [Arguments(new[] { 0 }, new[] { 0 })]
+    [Arguments(new[] { 0, 0, 3, 0, 0, 10, 0, 4 }, new[] { 3, 10, 4, 0, 0, 0, 0, 0 })]
+    [Arguments(new[] { 1 }, new[] { 1 })]
+    public async Task TestMoveZeroes(int[] nums, int[] expectedResult)
     {
         MoveZeroesSolution.MoveZeroes(nums);
-        Assert.Equal(expectedResult, nums);
+        await Assert.That(nums).IsEquivalentTo(expectedResult, CollectionOrdering.Matching);
     }
 }

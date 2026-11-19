@@ -1,17 +1,17 @@
 using AlgoPractice.LinkedList;
-using System;
+using TUnit.Assertions.Enums;
 
 namespace AlgoPracticeTest.LinkedList;
 
 public class RemoveNodeFromListTest
 {
-    [Theory]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 2, new[] { 1, 2, 3, 5 })]
-    [InlineData(new[] { 1, 2 }, 2, new[] { 2 })]
-    public void ValidHappyFlow(int[] input, int n, int[] expectedResult)
+    [Test]
+    [Arguments(new[] { 1, 2, 3, 4, 5 }, 2, new[] { 1, 2, 3, 5 })]
+    [Arguments(new[] { 1, 2 }, 2, new[] { 2 })]
+    public async Task ValidHappyFlow(int[] input, int n, int[] expectedResult)
     {
         var inputList = LinkedListFactory.FromValues(input);
         var result = LinkedListFactory.ToValues(RemoveNodeFromList.RemoveNthFromEnd(inputList, n));
-        Assert.Equal(expectedResult, result);
+        await Assert.That(result).IsEquivalentTo(expectedResult, CollectionOrdering.Matching);
     }
 }
