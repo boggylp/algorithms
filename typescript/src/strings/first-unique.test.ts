@@ -7,7 +7,8 @@ describe('firstUnique', () => {
     { input: 'aabb', expected: null },
     { input: '', expected: null },
     { input: 'zab', expected: 'z' },
-    { input: 'q', expected: 'q' }
+    { input: 'q', expected: 'q' },
+    { input: 'aaa', expected: null }
   ])('returns $expected for "$input"', ({ input, expected }) => {
     expect(firstUnique(input)).toBe(expected);
   });
